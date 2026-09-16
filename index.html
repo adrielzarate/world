@@ -23,6 +23,10 @@
             height: 100svh;
             display: flex;
             justify-content: center;
+            /* background-image: url(bg.jpg); */
+            /* background-size: cover; */
+            /* background-position: center; */
+            background-color: #000;
         }
         #hello {
             transform: rotate(-5deg);
@@ -59,7 +63,8 @@
         }
         #hello .letter {
             stroke: url(#imgPattern);
-            filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .15));
+            /* filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .15)); */
+            filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 1));
         }
         #helloMobile .letter {
             stroke: url(#imgPatternMobile);
@@ -67,8 +72,10 @@
             text-shadow: 0 3px 3px rgba(0, 0, 0, .15);
         }
         .border {
-            stroke: white;
-            stroke-width: 10;
+            /* stroke: white; */
+            stroke: #5e47c7;
+            /* stroke-width: 10; */
+            stroke-width: 11;
             fill: none;   
         }
         .shadow {
@@ -120,6 +127,7 @@
         }
         #aboutMe strong {
             color: #363636;
+            color: #fff;
         }
         /**/
 		#me.container {
@@ -301,6 +309,29 @@
     overflow: hidden;
 }
 
+.video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  /* z-index: -1; */
+  opacity: .3;
+  animation: blurFocus 11s ease-in-out infinite;
+}
+
+@keyframes blurFocus {
+  0%     { filter: blur(0px); }
+  60%    { filter: blur(0px); }
+  66.66% { filter: blur(10px); }
+  73%    { filter: blur(0px); }
+  100%   { filter: blur(0px); }
+}
+
 @media (max-width: 700px) {
     #hello {
         display: none;
@@ -335,13 +366,17 @@
 <body>
     <section id="home">
 
+        <video class="video-bg" autoplay muted loop playsinline>
+            <source src="bg.mp4" type="video/mp4">
+        </video>
+
         <svg id="hello" viewBox="0 0 600 100" xmlns="http://www.w3.org/2000/svg">
             
-            <!-- <defs>
+            <defs>
                 <linearGradient id="textGradient" x1="0%" y1="30%" x2="0%" y2="80%">
                 <stop offset="0%" stop-color="#2F0365" />3            <stop offset="100%" stop-color="#8017FF" />
                 </linearGradient>
-            </defs>  -->
+            </defs> 
            
             <defs>
                 <pattern id="imgPattern" patternUnits="userSpaceOnUse" width="600" height="200">
@@ -356,11 +391,11 @@
             </defs>
 
             
-            <!-- <use href="#H" id="sH" class="shadow" x="-7" y="10" />
+            <use href="#H" id="sH" class="shadow" x="-7" y="10" />
             <use href="#E" id="sE" class="shadow" x="-7" y="10" />
             <use href="#L1" id="sL1" class="shadow" x="-7" y="10" />
             <use href="#L2" id="sL2" class="shadow" x="-7" y="10" />
-            <use href="#O" id="sO" class="shadow" x="-7" y="10" />  -->
+            <use href="#O" id="sO" class="shadow" x="-7" y="10" /> 
            
 
             <g id="lH" class="letter">
@@ -428,13 +463,13 @@
             </g>
         </svg>
 
-        <div id="me" class="container">
+        <!-- <div id="me" class="container">
             <div class="action top-left"></div>
             <div class="action top-right"></div>
             <div class="action bottom-left"></div>
             <div class="action bottom-right"></div>
             <div class="bg"></div>
-        </div>
+        </div> -->
         
         <p id="aboutMe">
             <strong>I'm Adriel,</strong> a developer passionate about<br>design, interaction, and digital experiences.<br>
