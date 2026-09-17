@@ -27,6 +27,33 @@
             /* background-size: cover; */
             /* background-position: center; */
             background-color: #000;
+            position: relative;
+            width: 100%;
+            height: 100svh;
+            overflow: hidden;
+        }
+
+        .video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            /* z-index: -1; */
+            opacity: .5;
+            animation: blurFocus 11s ease-in-out infinite;
+        }
+
+        @keyframes blurFocus {
+            0%     { filter: blur(0px); }
+            60%    { filter: blur(0px); }
+            66.66% { filter: blur(10px); }
+            73%    { filter: blur(0px); }
+            100%   { filter: blur(0px); }
         }
         #hello {
             transform: rotate(-5deg);
@@ -58,29 +85,32 @@
             transform: rotate(0);
         }
         .letter {
-            stroke-width: 5;
+            /* stroke-width: 5; */
             fill: transparent;
         }
         #hello .letter {
-            stroke: url(#imgPattern);
-            /* filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .15)); */
+            /* stroke: url(#imgPattern); */
             filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 1));
-        }
-        #helloMobile .letter {
-            stroke: url(#imgPatternMobile);
-            filter: none;
-            text-shadow: 0 3px 3px rgba(0, 0, 0, .15);
+            stroke: #85e7ff;
+            stroke-width: 6px;
         }
         .border {
-            /* stroke: white; */
-            stroke: #5e47c7;
-            /* stroke-width: 10; */
-            stroke-width: 11;
-            fill: none;   
+            /* stroke: #5e47c7; */
+            /* stroke: pink; */
+            /* stroke-width: 11; */
+            /* fill: none; */
+            stroke-width: 4px;
         }
         .shadow {
             fill: url(#textGradient);
         }
+        .texture-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+         /* ---------- */
         #bgSite {
             position: absolute;
             top: 0;
@@ -224,9 +254,9 @@
             text-align: center;
         }
         #experience button {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
             border: none;
             background: none;
             padding: 8px 0;
@@ -237,9 +267,9 @@
         #experience ul {
             list-style: none;
             padding: 0;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
         }
         #experience li {
             display: block;
@@ -302,63 +332,39 @@
             text-decoration-color: #000;
         }
 
-#home {
-    position: relative;
-    width: 100%;
-    height: 100svh;
-    overflow: hidden;
-}
-
-.video-bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-  /* z-index: -1; */
-  opacity: .3;
-  animation: blurFocus 11s ease-in-out infinite;
-}
-
-@keyframes blurFocus {
-  0%     { filter: blur(0px); }
-  60%    { filter: blur(0px); }
-  66.66% { filter: blur(10px); }
-  73%    { filter: blur(0px); }
-  100%   { filter: blur(0px); }
-}
-
-@media (max-width: 700px) {
-    #hello {
-        display: none;
-    }
-    #helloMobile {
-        display: block;
-    }
-    #helloMobile .letter {
-        stroke-width: 6;
-    }
-    #helloMobile .border {
-        stroke-width: 12; 
-    }
-    #aboutMe {
-        font-size: 1rem;
-    }
-    #me.container {
-        top: calc(50% - 10vmin);
-    }
-    #experience {
-        height: auto;
-        padding: 50px 0;
-    }
-    .skills {
-        display: none;
-    }
-}
+        @media (max-width: 700px) {
+            #hello {
+                display: none;
+            }
+            #helloMobile {
+                display: block;
+            }
+            #helloMobile .letter {
+                stroke: url(#imgPatternMobile);
+                filter: none;
+                text-shadow: 0 10px 4px rgba(0, 0, 0, .25);
+                stroke-width: 6;
+                fill: transparent;
+            }
+            #helloMobile .border {
+                stroke: white;
+                stroke-width: 8;
+                fill: none;
+            }
+            #aboutMe {
+                font-size: 1rem;
+            }
+            #me.container {
+                top: calc(50% - 10vmin);
+            }
+            #experience {
+                height: auto;
+                padding: 50px 0;
+            }
+            .skills {
+                display: none;
+            }
+        }
     </style>
     <script src="./gsap.min.js"></script>
     <script type="module" src="./main.js"></script>
@@ -374,14 +380,21 @@
             
             <defs>
                 <linearGradient id="textGradient" x1="0%" y1="30%" x2="0%" y2="80%">
-                <stop offset="0%" stop-color="#2F0365" />3            <stop offset="100%" stop-color="#8017FF" />
+                <stop offset="0%" stop-color="#2F0365" />
+                <stop offset="100%" stop-color="#8017FF" />
                 </linearGradient>
-            </defs> 
-           
-            <defs>
-                <pattern id="imgPattern" patternUnits="userSpaceOnUse" width="600" height="200">
+
+                <!-- <pattern id="imgPattern" patternUnits="userSpaceOnUse" width="600" height="200">
                     <image href="text-bg.webp" width="600" height="200" preserveAspectRatio="xMidYMid slice"/>
-                </pattern>
+                </pattern> -->
+
+                <mask id="textMask" maskUnits="userSpaceOnUse" x="0" y="0" width="600" height="100">
+                    <use href="#lH" fill="none" stroke="white" stroke-width="5" />
+                    <use href="#lE" fill="none" stroke="white" stroke-width="5" />
+                    <use href="#lL1" fill="none" stroke="white" stroke-width="5" />
+                    <use href="#lL2" fill="none" stroke="white" stroke-width="5" />
+                    <use href="#lO" fill="none" stroke="white" stroke-width="5" />
+                </mask>
 
                 <text id="H" x="5" y="90">H</text>
                 <text id="E" x="117" y="90">E</text>
@@ -389,14 +402,12 @@
                 <text id="L2" x="341" y="90">L</text>
                 <text id="O" x="455" y="90">O</text>
             </defs>
-
             
             <use href="#H" id="sH" class="shadow" x="-7" y="10" />
             <use href="#E" id="sE" class="shadow" x="-7" y="10" />
             <use href="#L1" id="sL1" class="shadow" x="-7" y="10" />
             <use href="#L2" id="sL2" class="shadow" x="-7" y="10" />
             <use href="#O" id="sO" class="shadow" x="-7" y="10" /> 
-           
 
             <g id="lH" class="letter">
                 <use href="#H" class="border" />
@@ -422,6 +433,13 @@
                 <use href="#O" class="border" />
                 <use href="#O" />
             </g>
+
+            <foreignObject x="0" y="0" width="600" height="100" mask="url(#textMask)">
+                <video xmlns="http://www.w3.org/1999/xhtml"
+                    class="texture-video"
+                    src="text-bg.mp4"
+                    autoplay muted loop playsinline></video>
+            </foreignObject>
         </svg>
 
         <svg id="helloMobile" viewBox="0 0 250 100" xmlns="http://www.w3.org/2000/svg">
@@ -505,7 +523,7 @@
                     <div class="position">Frontend Developer</div>
                 </li>
                 <li>
-                    <div class="company"><strong>...</strong>  <time datetime="">2008 ∙ 2014</time></div>
+                    <div class="company"><strong>Freelance / Agencies</strong>  <time datetime="">2008 ∙ 2014</time></div>
                     <div class="position">UI Web Designer / Web Technologies Teacher</div>
                 </li>
             </ul>
